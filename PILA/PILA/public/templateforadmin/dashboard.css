@@ -1,0 +1,214 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0056b3, #fcbf49, #f77f00);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background-color: #0d47a1;
+  color: white;
+  padding-top: 20px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.sidebar .logo {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.sidebar .menu-icon {
+  font-size: 28px;
+  margin-right: 10px;
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Navigation */
+.nav-links {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  margin: 5px 0;
+}
+
+.nav-links li a {
+  display: block;
+  padding: 12px 20px 12px 35px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  position: relative;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links li a:hover {
+  background-color: #f57c00;
+  color: white;
+}
+
+/* ✅ Active link stays highlighted */
+.nav-links li a.active-link {
+  background-color: #f57c00;
+  font-weight: bold;
+  color: white;
+}
+
+/* Dropdown */
+.nav-links .dropdown {
+  position: relative;
+}
+
+.nav-links .dropdown-content {
+  display: none;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  background-color: #0d47a1;
+}
+
+.nav-links .dropdown-content li a {
+  display: block;
+  padding: 10px 50px;
+  font-size: 15px;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.nav-links .dropdown-content li a:hover {
+  background-color: #f57c00;
+}
+
+.nav-links .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 250px;
+  padding: 40px;
+  width: 100%;
+}
+
+.main-content h1 {
+  color: #0d47a1;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 70px;
+}
+
+p {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Dashboard Card */
+.dashboard-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 1000px;
+  min-height: 300px;
+  margin: 40px auto;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.dashboard-card h1 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  color: #0d47a1;
+  font-weight: bold;
+}
+
+/* Queue Layout */
+.queue-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.current-serving {
+  background: #f57c00;
+  border-radius: 10px;
+  padding: 20px 40px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.current-serving p {
+  font-size: 18px;
+  margin: 0;
+}
+
+.current-serving h2 {
+  font-size: 36px;
+  margin: 10px 0 0;
+}
+
+.queue-stats {
+  background: #f57c00;
+  border-radius: 10px;
+  padding: 15px 30px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.queue-stats h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+  background: #f57c00;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #0d47a1;
+  color: white;
+}
+
+.accept, .hold, .done {
+  background: #f57c00;
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Table</title>
+  <link rel="stylesheet" href="inventory.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">
+      <span class="menu-icon">&#9776;</span>
+      <h2>PILA ADMIN</h2>
+    </div>
+    <ul class="nav-links">
+      <li><a href="admindashboard.html">Dashboard</a></li>
+      <li><a href="orders.html">Orders</a></li>
+      <li><a href="report.html">Reports</a></li>
+      <li><a href="usermanagement.html">User Management</a></li>
+      <li><a href="inventory.html" class="active-link">Inventory</a></li>
+      <li class="dropdown">
+        <a href="#">Accounts ▾</a>
+        <ul class="dropdown-content">
+          <li><a href="adminaccounts.html">Admin Accounts</a></li>
+          <li><a href="useraccounts.html">User Accounts</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Inventory Section -->
+  <div class="inventory-container">
+    <h2>Inventory</h2>
+
+    <div class="form-container">
+      <input type="text" id="itemName" placeholder="Item name">
+      <input type="number" id="itemStock" placeholder="Stock">
+      <input type="number" id="itemPrice" placeholder="Price">
+      <button id="addBtn">Add</button>
+    </div>
+
+    <table id="inventoryTable">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Stock</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>P.E. Uniform</td>
+          <td>200</td>
+          <td>750</td>
+          <td>
+            <select class="statusSelect">
+              <option>Enabled</option>
+              <option>Disabled</option>
+              <option>Low Stock</option>
+              <option>Out of Stock</option>
+            </select>
+          </td>
+          <td>
+            <button class="editBtn">Edit</button>
+            <button class="deleteBtn">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const addBtn = document.getElementById('addBtn');
+    const tableBody = document.querySelector('#inventoryTable tbody');
+
+    addBtn.addEventListener('click', () => {
+      const name = document.getElementById('itemName').value.trim();
+      const stock = document.getElementById('itemStock').value.trim();
+      const price = document.getElementById('itemPrice').value.trim();
+      const status = 'Enabled';
+
+      if (!name || !stock || !price) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${name}</td>
+        <td>${stock}</td>
+        <td>${price}</td>
+        <td>
+          <select class="statusSelect">
+            <option${status === 'Enabled' ? ' selected' : ''}>Enabled</option>
+            <option${status === 'Disabled' ? ' selected' : ''}>Disabled</option>
+            <option${status === 'Low Stock' ? ' selected' : ''}>Low Stock</option>
+            <option${status === 'Out of Stock' ? ' selected' : ''}>Out of Stock</option>
+          </select>
+        </td>
+        <td>
+          <button class="editBtn">Edit</button>
+          <button class="deleteBtn">Delete</button>
+        </td>
+      `;
+      tableBody.appendChild(newRow);
+      attachRowEvents(newRow);
+
+      document.getElementById('itemName').value = '';
+      document.getElementById('itemStock').value = '';
+      document.getElementById('itemPrice').value = '';
+    });
+
+    function attachRowEvents(row) {
+      const editBtn = row.querySelector('.editBtn');
+      const deleteBtn = row.querySelector('.deleteBtn');
+
+      deleteBtn.addEventListener('click', () => {
+        row.remove();
+      });
+
+      editBtn.addEventListener('click', () => {
+        const cells = row.querySelectorAll('td');
+        const newName = prompt('Edit Item Name:', cells[0].textContent);
+        const newStock = prompt('Edit Stock:', cells[1].textContent);
+        const newPrice = prompt('Edit Price:', cells[2].textContent);
+
+        if (newName !== null) cells[0].textContent = newName;
+        if (newStock !== null) cells[1].textContent = newStock;
+        if (newPrice !== null) cells[2].textContent = newPrice;
+      });
+    }
+
+    document.querySelectorAll('#inventoryTable tbody tr').forEach(attachRowEvents);
+  </script>
+</body>
+</html>
