@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, collection, query, where, getDocs, orderBy } 
+import { getAuth, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, collection, query, where, getDocs, orderBy } 
   from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 // Firebase config
@@ -29,6 +29,27 @@ document.getElementById("logout").addEventListener("click", async () => {
   window.location.href = "/index.html";
 });
 
+
+// Modal
+const modal = document.getElementById("reset-password-modal");
+const closeButton = document.getElementsByClassName("close-button")[0];
+const modalMessage = document.getElementById("modal-message");
+
+function showModal(message) {
+  modalMessage.textContent = message;
+  modal.style.display = "block";
+}
+
+closeButton.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 // Main Auth & Load Data
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
@@ -37,7 +58,7 @@ onAuthStateChanged(auth, async (user) => {
   }
 
   if (!user.emailVerified) {
-    alert("Verify email first.");
+    showModal("Verify email first.");
     await signOut(auth);
     window.location.href = "/index.html";
     return;
@@ -72,11 +93,11 @@ document.getElementById("account-form").addEventListener("submit", async (e) => 
 
   try {
     await setDoc(doc(db, "accounts", user.uid), details);
-    alert("Account info saved successfully!");
+    showModal("Account info saved successfully!");
     loadTransactionHistory(details.gmail);
   } catch (err) {
     console.error(err);
-    alert("Error saving info.");
+    showModal("Error saving info.");
   }
 });
 
@@ -154,3 +175,26 @@ async function loadTransactionHistory(userEmail) {
     transactionContainer.innerHTML = "<p>Error loading transactions.</p>";
   }
 }
+
+// Reset Password
+document.getElementById("reset-password").addEventListener("click", async () => {
+  const user = auth.currentUser;
+  if (!user) {
+    showModal("No user is signed in.");
+    return;
+  }
+
+  const userEmail = user.email;
+  if (!userEmail) {
+    showModal("User email is not available.");
+    return;
+  }
+
+  try {
+    await sendPasswordResetEmail(auth, userEmail);
+    showModal(`A password reset email has been sent to ${userEmail}. Please check your inbox.`);
+  } catch (error) {
+    console.error("Error sending password reset email:", error);
+    showModal("Failed to send password reset email. Please try again later.");
+  }
+});

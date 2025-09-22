@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin - Manage Orders</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="orders.css">
+</head>
+<body>
+  <aside id="sidebar">
+    <div class="sidebar-logo">PILA Admin</div>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="orders.html" class="active">Orders</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="reports.html">Reports</a>
+      <a href="users.html">Users</a>
+      <a href="mails.html">Mails</a>
+      <button id="logout">Logout</button>
+    </nav>
+  </aside>
+
+  <main id="main">
+    <header class="topbar">
+      <h1>Manage Orders</h1>
+    </header>
+
+    <div class="order-container">
+      <table id="ordersTable">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Customer Name</th>
+            <th>Order Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="product-name">P.E. Uniform</td>
+            <td class="customer-name">Joshua Hong</td>
+            <td>
+              <select class="status-select">
+                <option>Pending</option>
+                <option>Processing</option>
+                <option selected>Completed</option>
+                <option>Cancelled</option>
+              </select>
+            </td>
+            <td>
+              <button class="action-btn edit-btn">Cancel</button>
+              <button class="action-btn delete-btn">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td class="product-name">School ID CCIS Lanyard</td>
+            <td class="customer-name">Kim Mingyu</td>
+            <td>
+              <select class="status-select">
+                <option selected>Pending</option>
+                <option>Processing</option>
+                <option>Completed</option>
+                <option>Cancelled</option>
+              </select>
+            </td>
+            <td>
+              <button class="action-btn edit-btn">Cancel</button>
+              <button class="action-btn delete-btn">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script src="orders.js"></script>
+</body>
+</html>

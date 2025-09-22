@@ -45,14 +45,27 @@
   </div>
 
   <!-- Success Modal -->
-  <div id="successModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Order Successful!</h2>
-      <p id="success-message"></p>
-      <button id="ok-btn">OK</button>
+<div id="successModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <button id="print-ticket-btn">Print</button>
+    <div id="ticket">
+      <h3>Queue Number:</h3>
+      <p id="queue-number-placeholder"></p>
+      <h3>Name:</h3>
+      <p id="name-placeholder"></p>
+      <h3>Student ID:</h3>
+      <p id="student-id-placeholder"></p>
+      <h3>Date:</h3>
+      <p id="date-placeholder"></p>
     </div>
+    <p class="print-instruction">Please take a picture if printer is not available</p>
+    <h2>Order Successful!</h2>
+    <p id="success-message"></p>
+    <button id="ok-btn">OK</button>
   </div>
+</div>
+
 
   <script type="module" src="order.js"></script>
 </body>

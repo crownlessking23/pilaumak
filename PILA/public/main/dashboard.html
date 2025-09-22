@@ -6,7 +6,6 @@
   <title>Dashboard - Browse Items</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="dashboard.css">
-  <script src='https://www.noupe.com/embed/01996c6c3b2174838898445162c7546c9375.js'></script>
 </head>
 <body>
 
@@ -34,41 +33,61 @@
       <button id="next">&#62;</button>
     </div>
 
-<div id="inquiry-button">
-  💬
-</div>
+    <div id="inquiry-button">
+      💬
+    </div>
 
-<div id="inquiry-box">
-  <div class="inquiry-header">
-    <span>Need Help?</span>
-    <button id="close-inquiry">&times;</button>
-  </div>
-  <div class="inquiry-content">
-    <button id="inbox-option"> Inbox</button>
-    <button id="human-option">👤 Contact an admin</button>
-  </div>
-</div>
+    <div id="inquiry-box">
+      <div class="inquiry-header">
+        <span>Need Help?</span>
+        <button id="close-inquiry">&times;</button>
+      </div>
+      <div class="inquiry-content">
+        <button id="inbox-option"> Inbox</button>
+        <button id="human-option">👤 Contact an admin</button>
+        <div class="noupe-ai-toggle">
+          <label for="noupe-ai-switch">Noupe AI</label>
+          <label class="switch">
+            <input type="checkbox" id="noupe-ai-switch">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+    </div>
 
-<!-- Contact Form Modal -->
-<div id="contactModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="closeContact">&times;</span>
-    <h2>Contact Admin</h2>
-    <form id="contactForm">
-      <input type="text" id="contactName" placeholder="Your Name" required>
-      <input type="email" id="contactEmail" placeholder="Your Email" required>
-      <textarea id="contactMessage" placeholder="Your Message..." required></textarea>
-      <button type="submit">Send</button>
-    </form>
-  </div>
-</div>
+    <!-- Noupe AI Container (initially empty) -->
+    <div id="noupe-ai-container"></div>
 
-<div id="pageNotification" class="page-notification hidden">
-  <span id="pageNotificationMsg"></span>
-  <button id="closePageNotification">&times;</button>
-</div>
+    <!-- Noupe AI Warning Modal -->
+    <div id="noupe-ai-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button" id="noupe-ai-modal-close">&times;</span>
+        <p>Please avoid draining the monthly Noupe AI usage limit.</p>
+        <button id="agree-button">Agree</button>
+      </div>
+    </div>
 
-<audio id="notifSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" preload="auto"></audio>
+    <!-- Contact Form Modal -->
+    <div id="contactModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeContact">&times;</span>
+        <h2>Contact Admin</h2>
+        <form id="contactForm">
+          <input type="text" id="contactName" placeholder="Your Name" required>
+          <input type="email" id="contactEmail" placeholder="Your Email" required>
+          <input type="text" id="contactSubject" placeholder="Subject" required>
+          <textarea id="contactMessage" placeholder="Your Message..." required></textarea>
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="pageNotification" class="page-notification hidden">
+      <span id="pageNotificationMsg"></span>
+      <button id="closePageNotification">&times;</button>
+    </div>
+
+    <audio id="notifSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" preload="auto"></audio>
 
   <script type="module" src="dashboard.js"></script>
 </body>

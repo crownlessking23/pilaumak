@@ -330,22 +330,26 @@ header h1 {
 
 /* Toggle animation for inquiry button */
 #inquiry-button {
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
-  background: #007bff;
-  color: white;
-  font-size: 24px;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  z-index: 99999;
-  transition: transform 0.3s ease;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007bff;
+    color: white;
+    font-size: 24px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 99999;
+    transition: transform 0.3s ease, bottom 0.3s ease; /* Added bottom transition */
+}
+
+#inquiry-button.noupe-ai-active {
+    bottom: 100px;
 }
 
 /* Bounce/rotate effect */
@@ -363,7 +367,7 @@ header h1 {
 /* Inquiry Box */
 #inquiry-box {
   position: fixed;
-  bottom: 150px;
+  bottom: 85px; /* Positioned above the inquiry button */
   right: 20px;
   width: 260px;
   background: white;
@@ -371,8 +375,14 @@ header h1 {
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   display: none;
   flex-direction: column;
-  z-index: 9999;
+  z-index: 10001;
   overflow: hidden;
+  transition: bottom 0.3s ease; /* Add transition for smooth movement */
+}
+
+/* Move inquiry box up when AI is active */
+#inquiry-box.noupe-ai-active {
+    bottom: 165px;
 }
 
 .inquiry-header {
@@ -584,4 +594,120 @@ header h1 {
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+/* Noupe AI Toggle */
+.noupe-ai-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+/* Noupe AI Modal */
+#noupe-ai-modal {
+    z-index: 2000;
+}
+
+#noupe-ai-modal .modal-content {
+    width: 300px;
+    text-align: center;
+}
+
+#noupe-ai-modal button {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+
+/* Noupe AI Container */
+#noupe-ai-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 400px;
+    height: 600px;
+    display: none; /* Initially hidden */
+    z-index: 10000;
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }

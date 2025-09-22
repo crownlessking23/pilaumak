@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Inventory Management</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="inventory.css">
+</head>
+<body>
+  <aside id="sidebar">
+    <div class="sidebar-logo">PILA Admin</div>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="orders.html">Orders</a>
+      <a href="inventory.html" class="active">Inventory</a>
+      <a href="reports.html">Reports</a>
+      <a href="users.html">Users</a>
+      <a href="mails.html">Mails</a>
+      <button id="logout">Logout</button>
+    </nav>
+  </aside>
+
+  <main id="main">
+    <header>
+      <h1>Inventory Management</h1>
+      <button id="add-item-btn">Add New Item</button>
+    </header>
+
+    <div class="inventory-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="inventory-list">
+          <!-- Items will be dynamically loaded here -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Modal for Add/Edit Item -->
+  <div id="item-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2 id="modal-title">Add New Item</h2>
+      <form id="item-form">
+        <input type="hidden" id="item-id">
+        <label for="item-name">Name:</label>
+        <input type="text" id="item-name" required>
+
+        <label for="item-category">Category:</label>
+        <input type="text" id="item-category" required>
+
+        <label for="item-price">Price:</label>
+        <input type="number" id="item-price" required>
+
+        <label for="item-img">Image URL:</label>
+        <input type="text" id="item-img" required>
+
+        <div id="stock-inputs">
+          <!-- Stock inputs will be dynamically added here -->
+        </div>
+
+        <button type="submit" id="save-item-btn">Save Item</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="inventory.js"></script>
+</body>
+</html>

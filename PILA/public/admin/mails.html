@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Mails - PILA</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="mails.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <aside id="sidebar">
+    <div class="sidebar-logo">PILA Admin</div>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="orders.html">Orders</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="reports.html">Reports</a>
+      <a href="users.html">Users</a>
+      <a href="mails.html" class="active">Mails</a>
+      <button id="logout">Logout</button>
+    </nav>
+  </aside>
+
+  <main id="main">
+    <header class="topbar">
+      <h1 id="welcome">Admin Mails</h1>
+    </header>
+
+    <section id="admin-container">
+      <div class="left-column">
+        <div id="inbox-panel" class="card">
+          <div class="card-head">
+            <h2>Inbox</h2>
+            <div class="muted">All customer inquiries</div>
+          </div>
+          <div id="inquiry-list">
+              <!-- Inquiries will be loaded here by JavaScript -->
+          </div>
+        </div>
+      </div>
+      <div class="right-column">
+        <div id="message-panel" class="card">
+          <div id="message-view">
+              <p id="no-message-selected">Select a message to view.</p>
+              <div id="message-content" class="hidden">
+                  <div class="card-head">
+                    <h3 id="message-subject"></h3>
+                  </div>
+                  <p><strong>From:</strong> <span id="message-sender"></span></p>
+                  <p><strong>Email:</strong> <span id="message-email"></span></p>
+                  <p><strong>Status:</strong> <span id="message-status"></span></p>
+                  <p id="message-body"></p>
+                  
+                  <div id="admin-reply-container" class="hidden">
+                      <hr>
+                      <h4>Your Reply:</h4>
+                      <p id="admin-reply-body"></p>
+                  </div>
+
+                  <div id="reply-form-container">
+                    <hr>
+                    <h4>Reply</h4>
+                    <form id="reply-form">
+                        <textarea id="reply-body" placeholder="Type your reply..." required></textarea>
+                        <button type="submit" class="admin-btn next">Send Reply</button>
+                    </form>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="mails.js"></script>
+</body>
+</html>

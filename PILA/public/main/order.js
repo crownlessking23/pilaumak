@@ -344,6 +344,10 @@ if (orderForm) {
       // show success modal with correct queue number
       if (successMessageEl && successModal) {
         successMessageEl.innerText = `Your queue number is #${currentQueueNumber}`;
+        document.getElementById('queue-number-placeholder').innerText = currentQueueNumber;
+        document.getElementById('name-placeholder').innerText = details.fullName;
+        document.getElementById('student-id-placeholder').innerText = details.studentID;
+        document.getElementById('date-placeholder').innerText = new Date().toLocaleDateString();
         successModal.style.display = "flex";
       } else {
         alert(`Order successfully submitted!\nYour queue number is #${currentQueueNumber}`);

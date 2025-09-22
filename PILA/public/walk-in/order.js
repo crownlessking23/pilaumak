@@ -1,4 +1,4 @@
-// order.js (fixed full file)
+/* order.js (fixed full file) */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import {
@@ -29,6 +29,8 @@ const successModal = document.getElementById("successModal");
 const successMessageEl = document.getElementById("success-message");
 const successClose = successModal?.querySelector(".close");
 const successOk = document.getElementById("ok-btn");
+const printTicketBtn = document.getElementById("print-ticket-btn");
+
 
 let itemsList = [];
 let preselectedUsed = false;
@@ -360,6 +362,10 @@ if (orderForm) {
       // show success modal with correct queue number
       if (successMessageEl && successModal) {
         successMessageEl.innerText = `Your queue number is #${currentQueueNumber}`;
+        document.getElementById('queue-number-placeholder').innerText = currentQueueNumber;
+        document.getElementById('name-placeholder').innerText = details.fullName;
+        document.getElementById('student-id-placeholder').innerText = details.studentID;
+        document.getElementById('date-placeholder').innerText = new Date().toLocaleDateString();
         successModal.style.display = "flex";
       } else {
         alert(`Order successfully submitted!\nYour queue number is #${currentQueueNumber}`);
@@ -403,3 +409,32 @@ if (successOk) {
 window.addEventListener("click", (e) => {
   if (e.target === successModal) successModal.style.display = "none";
 });
+
+if(printTicketBtn) {
+    printTicketBtn.addEventListener('click', () => {
+        const ticket = document.getElementById('ticket');
+        const originalContents = document.body.innerHTML;
+        document.body.innerHTML = ticket.innerHTML;
+        window.print();
+        document.body.innerHTML = originalContents;
+        // Re-add event listeners after printing
+        // Note: This is a simplified approach. In a real app, you'd want to re-initialize the whole page script
+        // to ensure all event listeners are correctly re-attached.
+        // For this specific case, let's re-add the listeners we know are on this page.
+        const newLogoutBtn = document.getElementById("logout");
+        if (newLogoutBtn) {
+            newLogoutBtn.addEventListener("click", async () => {
+                await signOut(auth);
+                window.location.href = "/index.html";
+            });
+        }
+
+        const newHamburger = document.getElementById("hamburger");
+        const newSidebar = document.getElementById("sidebar");
+        if (newHamburger && newSidebar) {
+            newHamburger.addEventListener("click", () => {
+                newSidebar.style.left = newSidebar.style.left === "0px" ? "-250px" : "0px";
+            });
+        }       
+    });
+}

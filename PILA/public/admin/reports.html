@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin - Reports</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="reports.css">
+</head>
+<body>
+  <aside id="sidebar">
+    <div class="sidebar-logo">PILA Admin</div>
+    <nav>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="orders.html">Orders</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="reports.html" class="active">Reports</a>
+      <a href="users.html">Users</a>
+      <a href="mails.html">Mails</a>
+      <button id="logout">Logout</button>
+    </nav>
+  </aside>
+
+  <main id="main">
+    <header class="topbar">
+      <h1>Reports</h1>
+    </header>
+
+    <section class="reports-container">
+        <div class="card">
+            <div class="card-head">
+                <h2>Sales Reports</h2>
+            </div>
+            <div class="card-content">
+                <p>Generate and view sales reports.</p>
+                <button>Generate Sales Report</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-head">
+                <h2>Inventory Reports</h2>
+            </div>
+            <div class="card-content">
+                <p>Generate and view inventory reports.</p>
+                <button>Generate Inventory Report</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-head">
+                <h2>User Activity Reports</h2>
+            </div>
+            <div class="card-content">
+                <p>Generate and view user activity reports.</p>
+                <button>Generate User Activity Report</button>
+            </div>
+        </div>
+    </section>
+
+  </main>
+
+  <script src="reports.js"></script>
+</body>
+</html>

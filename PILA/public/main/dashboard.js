@@ -32,6 +32,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeContact = document.getElementById("closeContact");
   const contactForm = document.getElementById("contactForm");
 
+  // Noupe AI Elements
+  const noupeAiSwitch = document.getElementById('noupe-ai-switch');
+  const noupeAiModal = document.getElementById('noupe-ai-modal');
+  const noupeAiContainer = document.getElementById('noupe-ai-container');
+  const agreeButton = document.getElementById('agree-button');
+  const noupeAiModalClose = document.getElementById('noupe-ai-modal-close');
+
+
   let notificationBox = document.getElementById("notification-box");
   if (!notificationBox) {
     notificationBox = document.createElement("div");
@@ -371,11 +379,13 @@ if (enableSoundBtn) {
       e.preventDefault();
       const name = document.getElementById("contactName").value;
       const email = document.getElementById("contactEmail").value;
+      const subject = document.getElementById("contactSubject").value;
       const message = document.getElementById("contactMessage").value;
       try {
         await addDoc(collection(db, "inquiries"), {
           name,
           email,
+          subject,
           message,
           timestamp: serverTimestamp()
         });
@@ -388,4 +398,54 @@ if (enableSoundBtn) {
       }
     });
   }
+
+  // --- Noupe AI Logic ---
+    function showNoupeAI() {
+        noupeAiContainer.innerHTML = ''; 
+        const script = document.createElement('script');
+        script.src = 'https://www.noupe.com/embed/01996c6c3b2174838898445162c7546c9375.js';
+        noupeAiContainer.appendChild(script);
+        noupeAiContainer.style.display = 'block';
+        inquiryBtn.classList.add('noupe-ai-active');
+        inquiryBox.classList.add('noupe-ai-active');
+    }
+
+    function hideNoupeAI() {
+        noupeAiContainer.innerHTML = ''; 
+        noupeAiContainer.style.display = 'none';
+        inquiryBtn.classList.remove('noupe-ai-active');
+        inquiryBox.classList.remove('noupe-ai-active');
+    }
+
+    noupeAiSwitch.addEventListener('change', () => {
+        if (noupeAiSwitch.checked) {
+            // Turning on: show the modal first
+            noupeAiModal.style.display = 'block';
+        } else {
+            // Turning off: hide the AI
+            hideNoupeAI();
+        }
+    });
+
+    agreeButton.addEventListener('click', () => {
+        noupeAiModal.style.display = 'none';
+        showNoupeAI();
+    });
+
+    noupeAiModalClose.addEventListener('click', () => {
+        noupeAiModal.style.display = 'none';
+        noupeAiSwitch.checked = false; // Revert the switch since user didn't agree
+    });
+
+    // Also close modal if user clicks outside of the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target == noupeAiModal) {
+            noupeAiModal.style.display = 'none';
+            noupeAiSwitch.checked = false; // Revert the switch
+        }
+    });
+
+    // Ensure Noupe AI is hidden on initial page load
+    hideNoupeAI();
+
 });
