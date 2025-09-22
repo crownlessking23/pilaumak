@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Browse Items</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+  <script src='https://www.noupe.com/embed/01996c6c3b2174838898445162c7546c9375.js'></script>
+</head>
+<body>
+
+  <div id="hamburger">&#9776;</div>
+
+  <div id="sidebar">
+    <a href="#">Browse Items</a>
+    <a href="order.html">Place Order</a>
+    <a href="account.html">Account Details</a>
+    <button id="logout">Logout</button>
+  </div>
+
+  <div id="main">
+    <header>
+      <h1 id="welcome">Welcome, User</h1>
+    </header>
+
+    <div id="carousel-container">
+      <button id="prev">&#60;</button>
+      <div class="card" id="items-card">
+        <h2>Available Items</h2>
+        <input type="text" id="search-items" placeholder="Search by Name">
+        <div id="items-list"></div>
+      </div>
+      <button id="next">&#62;</button>
+    </div>
+
+<div id="inquiry-button">
+  💬
+</div>
+
+<div id="inquiry-box">
+  <div class="inquiry-header">
+    <span>Need Help?</span>
+    <button id="close-inquiry">&times;</button>
+  </div>
+  <div class="inquiry-content">
+    <button id="inbox-option"> Inbox</button>
+    <button id="human-option">👤 Contact an admin</button>
+  </div>
+</div>
+
+<!-- Contact Form Modal -->
+<div id="contactModal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeContact">&times;</span>
+    <h2>Contact Admin</h2>
+    <form id="contactForm">
+      <input type="text" id="contactName" placeholder="Your Name" required>
+      <input type="email" id="contactEmail" placeholder="Your Email" required>
+      <textarea id="contactMessage" placeholder="Your Message..." required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+</div>
+
+<div id="pageNotification" class="page-notification hidden">
+  <span id="pageNotificationMsg"></span>
+  <button id="closePageNotification">&times;</button>
+</div>
+
+<audio id="notifSound" src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" preload="auto"></audio>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

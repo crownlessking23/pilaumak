@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Management</title>
+  <link rel="stylesheet" href="usermanagement.css">
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="logo">
+      <span class="menu-icon">&#9776;</span>
+      <h2>PILA ADMIN</h2>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="admindashboard.html">Dashboard</a></li>
+      <li><a href="orders.html">Orders</a></li>
+      <li><a href="report.html">Reports</a></li>
+      <li><a href="usermanagement.html" class="active-link">User Management</a></li>
+      <li><a href="inventory.html">Inventory</a></li>
+
+      <li class="dropdown">
+        <a href="#">Accounts ▾</a>
+        <ul class="dropdown-content">
+          <li><a href="#">Admin Accounts</a></li>
+          <li><a href="#">User Accounts</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div class="user-container">
+    <h2>Admin Accounts</h2>
+
+    <div class="form-container">
+      <input type="text" id="empId" placeholder="Employee ID">
+      <input type="email" id="email" placeholder="Email">
+      <select id="role">
+        <option value="Admin">Admin</option>
+        <option value="Staff">Staff</option>
+      </select>
+      <button id="addUserBtn">Add User</button>
+    </div>
+
+    <table id="userTable">
+      <thead>
+        <tr>
+          <th>Employee ID</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>EMP000123</td>
+          <td>solengunthe@gmail.com</td>
+          <td>Admin</td>
+          <td>
+            <button class="editBtn">Edit</button>
+            <button class="deleteBtn">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const addUserBtn = document.getElementById('addUserBtn');
+    const userTableBody = document.querySelector('#userTable tbody');
+
+    addUserBtn.addEventListener('click', () => {
+      const empId = document.getElementById('empId').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const role = document.getElementById('role').value;
+
+      if (!empId || !email) {
+        alert('Please fill in Employee ID and Email.');
+        return;
+      }
+
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${empId}</td>
+        <td>${email}</td>
+        <td>${role}</td>
+        <td>
+          <button class="editBtn">Edit</button>
+          <button class="deleteBtn">Delete</button>
+        </td>
+      `;
+      userTableBody.appendChild(newRow);
+      attachRowEvents(newRow);
+
+      document.getElementById('empId').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('role').value = 'Admin';
+    });
+
+    function attachRowEvents(row) {
+      const editBtn = row.querySelector('.editBtn');
+      const deleteBtn = row.querySelector('.deleteBtn');
+
+      deleteBtn.addEventListener('click', () => {
+        row.remove();
+      });
+
+      editBtn.addEventListener('click', () => {
+        const cells = row.querySelectorAll('td');
+        const newId = prompt('Edit Employee ID:', cells[0].textContent);
+        const newEmail = prompt('Edit Email:', cells[1].textContent);
+        const newRole = prompt('Edit Role (Admin/Manager/Staff):', cells[2].textContent);
+
+        if (newId !== null) cells[0].textContent = newId;
+        if (newEmail !== null) cells[1].textContent = newEmail;
+        if (newRole !== null) cells[2].textContent = newRole;
+      });
+    }
+
+    document.querySelectorAll('#userTable tbody tr').forEach(attachRowEvents);
+  </script>
+</body>
+</html>

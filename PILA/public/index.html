@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <title>PILA - Login / Sign Up</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- Hero section centers login/signup vertically -->
+  <div class="hero">
+    <div class="container">
+      <h1 id="page-title">PILA</h1>
+
+      <form id="login-form">
+        <input type="email" id="login-email" placeholder="UMak Email" required>
+        
+        <div class="password-wrapper">
+          <input type="password" id="login-password" placeholder="Password" />
+          <span class="toggle-password" data-target="login-password">
+            <i data-lucide="eye"></i>
+          </span>
+        </div>
+
+        <button type="submit">Login</button>
+        <p class="forgot-password" id="forgot-password">Forgot Password?</p>
+      </form>
+
+      <p class="toggle-link" id="show-signup">Create account</p>
+
+      <form id="signup-form" class="hidden">
+        <input type="email" id="signup-email" placeholder="UMak Email" required>
+
+        <div class="password-wrapper">
+          <input type="password" id="signup-password" placeholder="Password" />
+          <span class="toggle-password" data-target="signup-password">
+            <i data-lucide="eye"></i>
+          </span>
+        </div>
+
+        <p id="password-requirements" class="password-info">
+          Must be at least 8 characters, include 1 capital letter, 1 number, and 1 symbol.
+        </p>
+
+        <div class="password-wrapper">
+          <input type="password" id="signup-repeat-password" placeholder="Repeat Password" />
+          <span class="toggle-password" data-target="signup-repeat-password">
+            <i data-lucide="eye"></i>
+          </span>
+        </div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+
+      <p class="toggle-link hidden" id="show-login">Already have an account? Log In</p>
+
+      <p id="status"></p>
+      <button id="resendVerificationBtn" class="hidden">Resend</button>
+    </div>
+  </div> <!-- End hero -->
+
+  <!-- Info Section below login/signup -->
+  <div class="info-section">
+    <h2>About PILA</h2>
+    <div class="info-cards">
+
+      <div class="info-card">
+        <h3>Purpose of PILA Web App</h3>
+        <p>
+          PILA (Predictive Intelligent Line Assistant) is designed to streamline queue and inventory management 
+          for the UMAK Cooperative. It integrates online and walk-in queueing, AI-assisted support, real-time 
+          inventory updates, and notifications to improve efficiency and reduce waiting times for students and staff.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <h3>Features of PILA Web App</h3>
+        <ul>
+          <li>Online queue ticketing</li>
+          <li>Real-time queue tracking</li>
+          <li>AI-assisted support</li>
+          <li>Inventory management and notifications</li>
+          <li>Improved efficiency and faster service</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>Information about UMAK COOP</h3>
+        <p>
+          The University of Makati Cooperative (UMAK Coop) provides essential goods and services to students. 
+          With traditional queueing methods often causing delays, PILA modernizes the process with digital 
+          ticketing, live queue tracking, and a smart system for faster, fairer service.
+        </p>
+        <p><strong>Operating Hours:</strong> 8AM to 9PM</p>
+        <p><strong>Days:</strong> Weekdays</p>
+        <p><strong>Location:</strong> Umak HPSB 10th Floor</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="module" src="main.js"></script>
+
+  <script>
+    lucide.createIcons();
+
+    const loginForm = document.getElementById("login-form");
+    const signupForm = document.getElementById("signup-form");
+    const showSignup = document.getElementById("show-signup");
+    const showLogin = document.getElementById("show-login");
+    const title = document.getElementById("page-title");
+
+    title.textContent = "PILA - Log In";
+
+    showSignup.addEventListener("click", () => {
+      loginForm.classList.add("hidden");
+      signupForm.classList.remove("hidden");
+      showSignup.classList.add("hidden");
+      showLogin.classList.remove("hidden");
+      title.textContent = "PILA - Sign Up";
+    });
+
+    showLogin.addEventListener("click", () => {
+      signupForm.classList.add("hidden");
+      loginForm.classList.remove("hidden");
+      showLogin.classList.add("hidden");
+      showSignup.classList.remove("hidden");
+      title.textContent = "PILA - Log In";
+    });
+  </script>
+
+</body>
+</html>

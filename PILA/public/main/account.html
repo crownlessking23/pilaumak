@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account Manager</title>
+  <link rel="stylesheet" href="account.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Hamburger Button -->
+  <div id="hamburger">&#9776;</div>
+
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <a href="dashboard.html">Browse Items</a>
+    <a href="order.html">Place Order</a>
+    <a href="account.html">Account Details</a>
+    <button id="logout">Logout</button>
+  </div>
+
+  <!-- Main Content -->
+<div id="main">
+  <header>
+    <h1>Account Manager</h1>
+  </header>
+
+  <div class="card">
+    <h2>Student Information</h2>
+    <form id="account-form">
+      <input type="text" id="fullName" placeholder="Full Name" required />
+      <input type="text" id="studentID" placeholder="Student ID" required />
+      <input type="email" id="gmail" placeholder="Umak Email" required />
+      <input type="text" id="contact" placeholder="Contact Number" required />
+      <input type="text" id="yearSection" placeholder="Year & Section" required />
+      <input type="text" id="program" placeholder="Program" required />
+      <button type="submit" class="save">Save Account Info</button>
+    </form>
+  </div>
+
+  <!-- Transaction History Section -->
+  <div class="card">
+    <h2>Transaction History</h2>
+    <div id="transaction-history">
+      <p class="empty">No transactions yet.</p>
+    </div>
+  </div>
+</div>
+
+  <script type="module" src="account.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Dashboard - PILA</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <aside id="sidebar">
+    <div class="sidebar-logo">PILA Admin</div>
+    <nav>
+      <a href="DashboardAdmin.html" class="active">Dashboard</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="reports.html">Reports</a>
+      <a href="reports.html">Users</a>
+      <button id="logout">Logout</button>
+    </nav>
+  </aside>
+
+  <main id="main">
+    <header class="topbar">
+      <h1 id="welcome">Admin Dashboard</h1>
+    </header>
+
+    <section id="admin-container">
+      <div class="left-column">
+        <div class="card current-serving-card">
+          <div class="card-head">
+            <h2>Now Serving</h2>
+            <div class="muted">Active customers being served</div>
+          </div>
+
+          <div id="current-number-list" class="serving-list">
+            <p class="muted">No active serving orders</p>
+          </div>
+
+          <div class="admin-actions">
+            <!-- IMPORTANT: this has an ID so JS finds it reliably -->
+            <button id="serve-next-btn" class="admin-btn next">➡ Serve Next</button>
+          </div>
+        </div>
+
+        <div class="card waiting-orders-card">
+          <div class="card-head">
+            <h2>Incoming / Waiting Orders</h2>
+            <div class="muted">All pending orders (admins can Serve Now or Cancel)</div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="waiting-orders-table">
+              <thead>
+              <tr>
+              <th>Queue #</th>
+              <th>Customer</th>
+              <th>Contact</th>
+              <th>Program</th>
+              <th>Student ID</th>
+              <th>Year/Section</th>
+              <th>Product(s)</th>
+              <th>Status</th>
+              <th>Cost</th>
+              <th class="col-actions">Action</th>
+              </tr>
+              </thead>
+              <tbody id="order-table-body">
+                <tr><td colspan="5" class="muted">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-column">
+        <div class="card stats-card">
+          <div class="card-head"><h2>Queue Statistics</h2></div>
+          <div class="stats-grid">
+            <div class="stat"><div class="stat-value" id="total-waiting">0</div><div class="stat-label">Total Waiting</div></div>
+            <div class="stat"><div class="stat-value" id="completed">0</div><div class="stat-label">Completed</div></div>
+            <div class="stat"><div class="stat-value" id="avg-wait">-</div><div class="stat-label">Avg Wait</div></div>
+            <div class="stat"><div class="stat-value" id="longest-wait">-</div><div class="stat-label">Longest Wait</div></div>
+            <div class="stat"><div class="stat-value" id="predicted-wait">-</div><div class="stat-label">Predicted</div></div>
+          </div>
+        </div>
+
+        <div class="card inventory-alerts">
+          <div class="card-head"><h2>🔔 Inventory Alerts</h2><div class="muted">Items near or below threshold</div></div>
+          <ul id="low-stock-list" class="lowstock-list">
+            <li class="muted">Loading...</li>
+          </ul>
+        </div>
+
+        <div class="card activity-log">
+          <div class="card-head"><h2>Recent Admin Actions</h2></div>
+          <ul id="admin-logs" class="log-list"><li class="muted">No actions yet.</li></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

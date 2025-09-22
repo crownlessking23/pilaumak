@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PILA Admin Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo">
+      <span class="menu-icon">&#9776;</span>
+      <h2>PILA ADMIN</h2>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="admindashboard.html" class="active-link">Dashboard</a></li>
+      <li><a href="orders.html">Orders</a></li>
+      <li><a href="report.html">Reports</a></li>
+      <li><a href="usermanagement.html">User Management</a></li>
+      <li><a href="inventory.html">Inventory</a></li>
+      <li class="dropdown">
+        <a href="#">Accounts ▾</a>
+        <ul class="dropdown-content">
+          <li><a href="adminaccounts.html">Admin Accounts</a></li>
+          <li><a href="useraccounts.html">User Accounts</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="dashboard-card">
+      <h1>Admin Queue Dashboard</h1>
+
+      <div class="queue-container">
+        <div class="current-serving">
+          <p>Current Serving</p>
+          <h2>#1</h2>
+        </div>
+
+        <div class="queue-stats">
+          <h3>Queue Stats</h3>
+          <p><strong>Total Waiting:</strong> 14</p>
+          <p><strong>Ave. Wait:</strong> 3 min</p>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn accept">Accept</button>
+        <button class="btn next">Call Next</button>
+        <button class="btn hold">Hold</button>
+        <button class="btn done">Done</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
